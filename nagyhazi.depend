@@ -1,0 +1,260 @@
+# depslib dependency file v1.0
+1431700965 source:c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\main.cpp
+	<iostream>
+	<stdlib.h>
+	<time.h>
+	"ball.h"
+	"tray.h"
+	"area.h"
+	"score.h"
+	"debug.h"
+	"mouse.h"
+	"opencv2/highgui/highgui.hpp"
+	"opencv2/core/core.hpp"
+	<windows.h>
+	<conio.h>
+	<exception>
+	"myvector.h"
+
+1431699316 source:c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\area.cpp
+	"opencv2/core/core.hpp"
+	"area.h"
+
+1431700297 c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\area.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+
+1431701932 source:c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\ball.cpp
+	"ball.h"
+	"tray.h"
+	"opencv2/core/core.hpp"
+	<cmath>
+	<exception>
+	<iostream>
+
+1431684744 source:c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\tray.cpp
+	"opencv2/core/core.hpp"
+	"tray.h"
+
+1431684744 c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\ball.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+	"tray.h"
+	"area.h"
+
+1431684744 c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\tray.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+	"area.h"
+	"ball.h"
+
+1426163325 source:c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\score.c
+
+1431511245 c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\score.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+	"area.h"
+
+1431700297 source:c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\score.cpp
+	"score.h"
+	<iostream>
+	<fstream>
+	<exception>
+	"displayable.h"
+
+1431679553 c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\debug.h
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	"ball.h"
+	"tray.h"
+	"area.h"
+
+1431680339 source:c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\debug.cpp
+	"debug.h"
+	<iostream>
+	<ostream>
+	<fstream>
+	<ctime>
+
+1431684165 c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\displayable.h
+	"opencv2/core/core.hpp"
+
+1429871075 source:c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\displayable.cpp
+
+1431015743 c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\mouse.h
+
+1431702862 c:\users\user\documents\codeblocksprojects\nagyházi\nagyhazi\myvector.h
+	<vector>
+	"ball.h"
+
+1431699316 source:c:\users\user\documents\codeblocksprojects\ponggame\area.cpp
+	"opencv2/core/core.hpp"
+	"area.h"
+
+1431700297 c:\users\user\documents\codeblocksprojects\ponggame\area.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+
+1431684165 c:\users\user\documents\codeblocksprojects\ponggame\displayable.h
+	"opencv2/core/core.hpp"
+
+1431701932 source:c:\users\user\documents\codeblocksprojects\ponggame\ball.cpp
+	"ball.h"
+	"tray.h"
+	"opencv2/core/core.hpp"
+	<cmath>
+	<exception>
+	<iostream>
+
+1431684744 c:\users\user\documents\codeblocksprojects\ponggame\ball.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+	"tray.h"
+	"area.h"
+
+1431684744 c:\users\user\documents\codeblocksprojects\ponggame\tray.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+	"area.h"
+	"ball.h"
+
+1431680339 source:c:\users\user\documents\codeblocksprojects\ponggame\debug.cpp
+	"debug.h"
+	<iostream>
+	<ostream>
+	<fstream>
+	<ctime>
+
+1431679553 c:\users\user\documents\codeblocksprojects\ponggame\debug.h
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	"ball.h"
+	"tray.h"
+	"area.h"
+
+1431703088 source:c:\users\user\documents\codeblocksprojects\ponggame\main.cpp
+	<iostream>
+	<stdlib.h>
+	<time.h>
+	"ball.h"
+	"tray.h"
+	"area.h"
+	"score.h"
+	"debug.h"
+	"mouse.h"
+	"opencv2/highgui/highgui.hpp"
+	"opencv2/core/core.hpp"
+	<windows.h>
+	<conio.h>
+	<exception>
+	"myvector.h"
+
+1431511245 c:\users\user\documents\codeblocksprojects\ponggame\score.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+	"area.h"
+
+1431015743 c:\users\user\documents\codeblocksprojects\ponggame\mouse.h
+
+1431703018 c:\users\user\documents\codeblocksprojects\ponggame\myvector.h
+	<vector>
+	"ball.h"
+
+1431700297 source:c:\users\user\documents\codeblocksprojects\ponggame\score.cpp
+	"score.h"
+	<iostream>
+	<fstream>
+	<exception>
+	"displayable.h"
+
+1431684744 source:c:\users\user\documents\codeblocksprojects\ponggame\tray.cpp
+	"opencv2/core/core.hpp"
+	"tray.h"
+
+1431699316 source:c:\users\user\documents\github\ponggame\area.cpp
+	"opencv2/core/core.hpp"
+	"area.h"
+
+1431700297 c:\users\user\documents\github\ponggame\area.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+
+1431684165 c:\users\user\documents\github\ponggame\displayable.h
+	"opencv2/core/core.hpp"
+
+1431701932 source:c:\users\user\documents\github\ponggame\ball.cpp
+	"ball.h"
+	"tray.h"
+	"opencv2/core/core.hpp"
+	<cmath>
+	<exception>
+	<iostream>
+
+1431684744 c:\users\user\documents\github\ponggame\ball.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+	"tray.h"
+	"area.h"
+
+1431684744 c:\users\user\documents\github\ponggame\tray.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+	"area.h"
+	"ball.h"
+
+1431680339 source:c:\users\user\documents\github\ponggame\debug.cpp
+	"debug.h"
+	<iostream>
+	<ostream>
+	<fstream>
+	<ctime>
+
+1431679553 c:\users\user\documents\github\ponggame\debug.h
+	<stdlib.h>
+	<iostream>
+	<fstream>
+	"ball.h"
+	"tray.h"
+	"area.h"
+
+1431719795 source:c:\users\user\documents\github\ponggame\main.cpp
+	<iostream>
+	<stdlib.h>
+	<time.h>
+	"ball.h"
+	"tray.h"
+	"area.h"
+	"score.h"
+	"debug.h"
+	"mouse.h"
+	"opencv2/highgui/highgui.hpp"
+	"opencv2/core/core.hpp"
+	<windows.h>
+	<conio.h>
+	<exception>
+	"myvector.h"
+
+1431511245 c:\users\user\documents\github\ponggame\score.h
+	"opencv2/core/core.hpp"
+	"displayable.h"
+	"area.h"
+
+1431015743 c:\users\user\documents\github\ponggame\mouse.h
+
+1431721816 c:\users\user\documents\github\ponggame\myvector.h
+	<vector>
+	"ball.h"
+
+1431700297 source:c:\users\user\documents\github\ponggame\score.cpp
+	"score.h"
+	<iostream>
+	<fstream>
+	<exception>
+	"displayable.h"
+
+1431684744 source:c:\users\user\documents\github\ponggame\tray.cpp
+	"opencv2/core/core.hpp"
+	"tray.h"
+
