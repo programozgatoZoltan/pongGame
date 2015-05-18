@@ -34,4 +34,6 @@
 *.sav
 *.log
 obj/
+*.layout
+*.depend
 
