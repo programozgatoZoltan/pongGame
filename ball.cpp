@@ -19,7 +19,7 @@ Ball::Ball(double x, double y) : Displayable() {
     setY(y);
     velocity = 20; // sebesség
     hWall = false; // kezdetben nem érinti a falat
-    color = new cv::Scalar(0,0,255); //piros
+    color = new cv::Scalar(0,5,250); //piros
     setDirectionRandom(); // irányvektor beállítás
     setVelocity((double)((rand()%2000)+2000)/1000); //labda gyorsaság random
 }

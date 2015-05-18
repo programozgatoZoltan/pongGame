@@ -6,13 +6,13 @@ Tray::Tray():y(0){
     this->width = 100;
     this->height = 2;
     x_MAX = 300;
-    color = new cv::Scalar(0,0,0); // fekete
+    color = new cv::Scalar(2,3,5); // fekete
 }
 Tray::Tray(int x, int y, int width, int height):Displayable(), y(y), x(x){
     this->width = width;
     this->height = height;
     x_MAX = 300;
-    color = new cv::Scalar(0,0,0); // fekete
+    color = new cv::Scalar(2,3,5); // fekete
 }
 Tray::Tray(const Tray& t):y(t.getY()){
     this->x = t.x;
