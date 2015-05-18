@@ -7,7 +7,6 @@ class Score:public Displayable{
 private:
     unsigned int level;
     unsigned int score;
-    unsigned int health;
     unsigned int bonus;
     unsigned int Ppoint; //játékos pont
     unsigned int Mpoint; //gép pontszám
@@ -25,7 +24,6 @@ public:
     // get fv.-ek
     int getLevel()const{return level;}
     int getScore()const{return score;}
-    int getHelath()const{return health;}
     int getBonus()const{return bonus;}
     int getMachinePoint()const{return Mpoint;}
     int getPlayerPoint()const{return Ppoint;}

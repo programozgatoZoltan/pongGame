@@ -7,7 +7,6 @@ using namespace std;
 Score::Score(){
     level = 1;
     score = 0;
-    health = 3;
     bonus = 0;
     Ppoint=0, Mpoint = 0;
 }
@@ -17,10 +16,6 @@ void Score::LevelInc(){
 void Score::Inc(int value){
     score += value;
     if(score>=100)bonus++;
-}
-void Score::setHealth(int value){
-    health += value;
-    if(health <= 0) health = 0;
 }
 void Score::setBonus(int value){
     bonus += value;
@@ -32,15 +27,13 @@ void Score::PlayerPointInc(){Ppoint++;}
 void Score::MachinePointInc(){Mpoint++;}
 // kiírjuk a képernyõre apontszámokat
 void Score::Draw(){
-    char* s = new char[20];
-    char* l = new char[20];
-    char* h = new char[20];
-    char* b = new char[20];
-    char* p = new char[20];
-    char* m = new char[20];
+    char s[20];
+    char l[20];
+    char b[20];
+    char p[20];
+    char m[20];
     sprintf(s,"score : %d", score);
     sprintf(l,"level : %d", level);
-    sprintf(h,"health : %d", health);
     sprintf(b,"bonus : %d", bonus);
     sprintf(p,"%d", Ppoint);
     sprintf(m,"%d", Mpoint);
@@ -48,28 +41,24 @@ void Score::Draw(){
     FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(200,200,250), 1, CV_8UC3);
     putText(Displayable::image, l, cvPoint(30,50),
     FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(200,200,250), 1, CV_8UC3);
-    putText(Displayable::image, h, cvPoint(30,70),
-    FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(200,200,250), 1, CV_8UC3);
-    putText(Displayable::image, b, cvPoint(30,90),
+    putText(Displayable::image, b, cvPoint(30,70),
     FONT_HERSHEY_COMPLEX_SMALL, 0.8, cvScalar(200,200,250), 1, CV_8UC3);
 
-    putText(Displayable::image, p, cvPoint(30,290),
-    FONT_HERSHEY_COMPLEX_SMALL, 2, cvScalar(0,0,0), 2, CV_8UC3);
-    putText(Displayable::image, m, cvPoint(30,340),
-    FONT_HERSHEY_COMPLEX_SMALL, 2, cvScalar(0,0,0), 2, CV_8UC3);
-    delete s;
-    delete l;
-    delete h;
-    delete b;
-    delete p;
-    delete m;
+    putText(Displayable::image, m, cvPoint(30,290),
+    FONT_HERSHEY_PLAIN, 2.3, cvScalar(0,0,0), 2, CV_8UC3);
+    putText(Displayable::image, p, cvPoint(30,340),
+    FONT_HERSHEY_PLAIN, 2.3, cvScalar(0,0,0), 2, CV_8UC3);
 }
 void Score::gameOver(){
-    putText(Displayable::image, "GAME OVER", cvPoint(68, 500),
+    string gameover = "GAME OVER!";
+    Size textSize = getTextSize( gameover, FONT_HERSHEY_COMPLEX_SMALL, 1.2, 1, 0);
+    putText(Displayable::image, gameover, cvPoint(150-textSize.width/2, 500),
     FONT_HERSHEY_COMPLEX_SMALL, 1.2, cvScalar(2,2,255), 1, CV_8UC3);
 }
 void Score::win(){
-    putText(Displayable::image, "WIN!", cvPoint(90, 500),
+    string win = "WIN!";
+    Size textSize = getTextSize( win, FONT_HERSHEY_COMPLEX_SMALL, 1.2, 1, 0);
+    putText(Displayable::image, win, cvPoint(150-textSize.width/2, 500),
     FONT_HERSHEY_COMPLEX_SMALL, 1.2, cvScalar(2,2,255), 1, CV_8UC3);
 }
 void Score::Start(){

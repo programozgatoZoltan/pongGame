@@ -2,11 +2,25 @@
 #include "tray.h"
 using namespace cv;
 //Mat Displayable::image;
+Tray::Tray():y(0){
+    this->width = 100;
+    this->height = 2;
+    x_MAX = 300;
+    color = new cv::Scalar(0,0,0); // fekete
+}
 Tray::Tray(int x, int y, int width, int height):Displayable(), y(y), x(x){
     this->width = width;
     this->height = height;
     x_MAX = 300;
     color = new cv::Scalar(0,0,0); // fekete
+}
+Tray::Tray(const Tray& t):y(t.getY()){
+    this->x = t.x;
+    this->width = t.width;
+    this->height = t.height;
+    this->x_MAX = t.x_MAX;
+    this->y_MAX = t.y_MAX;
+    this->color = new Scalar(*(t.color));
 }
 bool Tray::setX(int x){
     if(x > width/2 && x < x_MAX-width/2){
@@ -45,6 +59,21 @@ void Tray::Compute(Ball& b){
         // enyhe mozgás
         setX(150 + (b.getX()-150)/5);
     }
+}
+void Tray::Compute(myvector<Ball>& b){
+    double ymin = (b[0]).getY();
+    int minindex;
+    for(int i=0; i < b.size(); i++){
+        if((b[i]).getY() <= ymin){
+            ymin = (b[i]).getY();
+            minindex = i;
+        }
+    }
+    Compute(b[minindex]);
+}
+Tray& Tray::operator=(const Tray& rhs){
+    Tray* b = new Tray(rhs);
+    return *b;
 }
 Tray::~Tray(){
     delete color;

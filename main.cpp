@@ -1,17 +1,18 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <windows.h>
+#include <conio.h>
+#include <exception>
+#include <map>
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/core/core.hpp"
 #include "ball.h"
 #include "tray.h"
 #include "area.h"
 #include "score.h"
 #include "debug.h"
 #include "mouse.h"
-#include "opencv2/highgui/highgui.hpp"
-#include "opencv2/core/core.hpp"
-#include <windows.h>
-#include <conio.h>
-#include <exception>
 #include "myvector.h"
 #define UPKEY 2490368
 #define DOWNKEY 2621440
@@ -56,11 +57,14 @@ int main()
         Area Palya;
         Ball Labda(150, 300); //Labda a 150, 300 koordinátán
         myvector<Ball> balls; // a labdák tárolója
-        for(int i=0;i<1;i++){
+        for(int i=0;i<2;i++){
             balls.push_back((new Ball(150,300)));
         }
-        Tray t1(150,2,50,4); // gép ütője
-        Tray t2(150,Palya.getHeight()-2,50,4); // alsó ütő
+        map<string,Tray*> tray;
+        tray["machine"] =  new Tray(150,2,50,4); // gép ütője
+        tray["player"] = new Tray(150,Palya.getHeight()-2,50,4); // alsó ütő
+        //Tray t1(150,2,50,4); // gép ütője
+        //Tray t2(150,Palya.getHeight()-2,50,4); // alsó ütő
         Score score; // pontokat számító
         Debug debug;
         Displayable::setImage(imread("background.jpg", CV_LOAD_IMAGE_COLOR)); // kezdő képernyő betöltés
@@ -74,63 +78,43 @@ int main()
         int pressedKey = 0; // leütött billentyű
         while(pressedKey != ENTER) // várunk az enter billentyűre
             pressedKey = waitKey(0);
-        Palya.Draw(); // kirajzolunk mindent
-        //balls.Draw();//Labda.Draw();
-        //for(int i=0; i < balls.size(); i++) balls[i].Draw();
-        balls.allDraw();
-        //balls[0].DrawDirection();//Labda.DrawDirection();
-        //for(int i=0; i < balls.size(); i++) balls[i].DrawDirection();
-        balls.allDrawdirection();
-        t1.Draw();
-        t2.Draw();
-        score.Start(); // elindítjuk az eredményjelzőt
-
-        imshow("Pong Game", Displayable::getImage()); // megjelenítünk
-        //int pr = waitKey(0);
-        //printf("\n%d\n", pr);
-
-        debug.print(Labda); // kiírjuk a labda paramétereit
-
         while(1){
             pressedKey = waitKey(10); //
             if(pressedKey == ESC) break; // kilépési feltétel
-            Palya.Draw();
-            //balls[0].Compute(t2,t1);//Labda.Compute(t2,t1);
-            //for(int i=0; i < balls.size(); i++) balls[i].Compute(t2,t1);
-            balls.allCompute(t2,t1);
-            //debug.print(Labda);
-            t1.Compute(balls[0]);//t1.Compute(Labda);
+
+            //balls.allCompute(t2,t1);
+            balls.allCompute(*tray["player"], *tray["machine"]);
+            //t1.Compute(balls);
+            tray["machine"]->Compute(balls);
+
             // alsó ütőt az egérrel mozgathatjuk
-            t2.setX(xGlobalMouse);
-            t1.Draw();
-
-            t2.Draw();
-
+            //t2.setX(xGlobalMouse);
+            tray["player"]->setX(xGlobalMouse);
+            // kirajzoló fv-ek.
+            Palya.Draw();
+            //t1.Draw();
+            tray["machine"]->Draw();
+            //t2.Draw();
+            tray["player"]->Draw();
             score.Draw();
-            //balls[0].DrawDirection();//Labda.DrawDirection();
-            //for(int i=0; i < balls.size(); i++) balls[i].DrawDirection();
-            balls.allDrawdirection();
-            //balls[0].Draw();//Labda.Draw();
-            //for(int i=0; i < balls.size(); i++) balls[i].Draw();
+            //balls.allDrawdirection();
             balls.allDraw();
             imshow("Pong Game",  Displayable::getImage());
-            if(balls[0].isOut()){//Labda.isOut()){
+            if(balls.isOut()){//Labda.isOut()){
                 Palya.Draw();
                 cout << "Pontszerzes" << endl;
                 if(balls[0].getY() < 10){//if(Labda.getY() < 10){
                     if(score.getPlayerPoint() == 10){
-
                         score.Draw();
                         score.win();
-
                         imshow("Pong Game",  Displayable::getImage());
-                        waitKey(0);
                         break;
                     }
                     score.PlayerPointInc();
                     score.Draw();
                     imshow("Pong Game",  Displayable::getImage());
                     waitKey(0);
+                    break;
                 }else{
                     score.MachinePointInc();
                     if(score.getMachinePoint() == 10){
@@ -142,8 +126,7 @@ int main()
                         break;
                     }
                 }
-                score.setHealth(-1);
-                score.resetScore();
+                //score.resetScore();
                 //for(int i=0; i < balls.size(); i++) balls[i].setDirectionRandom();//Labda.setDirectionRandom();
                 balls.allsetDirectionRandom();
                 //for(int i=0; i < balls.size(); i++) balls[i].randomizeVelocity();//Labda.randomizeVelocity();
@@ -153,11 +136,14 @@ int main()
                 score.Draw();
                 //for(int i=0; i < balls.size(); i++) balls[i].Draw();
                 balls.allDraw();
-                t1.Draw();
-                t2.Draw();
+                //t1.Draw();
+                tray["machine"]->Draw();
+                //t2.Draw();
+                tray["player"]->Draw();
                 score.Start();
                 imshow("Pong Game",  Displayable::getImage());
-                waitKey(0);
+                pressedKey = waitKey(0); //
+                if(pressedKey == ESC) break; // kilépési feltétel
             }
             if(balls[0].hitWall()){//if(Labda.hitWall()){
                 score.Inc(9 + ((rand()%2)));
@@ -165,6 +151,8 @@ int main()
         }
         score.Save();
     }catch(const myexception& e){
+        cerr << "Exception: " << e.what() << endl;
+    }catch(exception& e){
         cerr << "Exception: " << e.what() << endl;
     }catch(...){
         cerr << "Undefined Exception!" << endl;

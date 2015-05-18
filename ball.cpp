@@ -44,6 +44,18 @@ void Ball::Draw() {
 void Ball::DrawDirection() {
     line(Displayable::image, Point(150, 500), Point(150, 500), *color,  3, 8 );
     line(Displayable::image, Point(150, 500), Point(150+vx*velocity*10, 500+vy*velocity*10), *color,  1, 8 );
+
+    char buff[20];
+    sprintf(buff,"%lf",vx);
+    putText(Displayable::image, buff, cvPoint(200,500),
+    FONT_HERSHEY_COMPLEX_SMALL, 0.6, cvScalar(0,0,0), 1, CV_8UC3);
+
+    sprintf(buff,"%lf",vy);
+    putText(Displayable::image, buff, cvPoint(200,510),
+    FONT_HERSHEY_COMPLEX_SMALL, 0.6, cvScalar(0,0,0), 1, CV_8UC3);
+    sprintf(buff,"%lf",velocity);
+    putText(Displayable::image, buff, cvPoint(200,520),
+    FONT_HERSHEY_COMPLEX_SMALL, 0.6, cvScalar(0,0,0), 1, CV_8UC3);
 }
 void Ball::setX(double x) {
     if(x < x_MAX-r && x > r)
@@ -107,6 +119,18 @@ void Ball::setDirectionRandom() {
         break;
     }
 }
+void Ball::randomizeDirection() {// +/- 5fokot változtat
+    // elmentjük az erdeti irányvektor előjeleit
+    int xdirection = (vx < 0) ? -1 : 1 ;
+    int ydirection = (vy < 0) ? -1 : 1 ;
+    double degree = sqrt(vx*vx + vy*vy);
+    int vardeg = 5; // a +/-5 fok
+    degree /= M_PI / 180;
+    degree += (double)((rand() % (2*vardeg*1000)) + (vardeg*1000)) / 1000;
+    degree *= M_PI / 180; //convert to radian
+    vx = cos(degree) * xdirection; //make vector
+    vy = sin(degree) * ydirection;
+}
 void Ball::Compute(Tray& t1, Tray& t2) {
     // következő koordináta számítása
     coordinate.x += vx * velocity;
@@ -115,24 +139,23 @@ void Ball::Compute(Tray& t1, Tray& t2) {
     if( (coordinate.x >= x_MAX - 2 * r - 0.1 && vx > 0) ||
         (coordinate.x <= 2 * r + 0.1 && vx < 0)){
         vx = - vx;
+        // ha érintettük a falat, akkor randomizálunk
+        randomizeDirection();
+        randomizeVelocity();
     }
     // az ütőkről való visszapattanás
     // ha pálya széléhez értünk és az ütő két széle között vagyunk
     if((coordinate.y >= y_MAX - 2 - 2 * r && coordinate.x > t1.getX() - t1.getWidth() / 2 - 2 &&
-         coordinate.x < t1.getX() + t1.getWidth() / 2 + 2 && vy > 0)) {
+         coordinate.x < t1.getX() + t1.getWidth() / 2 + 2 && vy > 0) && coordinate.y < y_MAX+r) {
         hWall = true; //pontgyűjtéshez
         vy = - vy;
         Compute(t1, t2);
     }
+    // alsó ütő
     if((coordinate.y <= 2 * r + 2 && coordinate.x > t2.getX() - t2.getWidth() / 2 - 2 &&
          coordinate.x < t2.getX() + t2.getWidth() / 2 + 2 && vy < 0)) {
         vy = - vy;
         Compute(t1, t2);
-    }
-    // ha érintettük a falat, akkor randomizálunk
-    if(hWall) {
-        randomizeDirection();
-        randomizeVelocity();
     }
 }
 bool Ball::hitWall() {
@@ -147,10 +170,6 @@ bool Ball::isOut() {
     if(coordinate.y > y_MAX || coordinate.y < 0)
         return true;
     return false;
-}
-void Ball::randomizeDirection() {// +/- 5fokot változtat
-        vx = vx * (double)((rand()%200)+900)/1000;
-        vy = vy * (double)((rand()%600)+700)/1000;
 }
 void Ball::randomizeVelocity() { // sebsség beállítása véletlen értékkel
     setVelocity((double)((rand()%3000)+4000)/1000);

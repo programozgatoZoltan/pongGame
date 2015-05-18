@@ -1,7 +1,9 @@
 #ifndef MYVECTOR_H
-#define MYVECTOR
+#define MYVECTOR_H
 #include <vector>
 #include "ball.h"
+//#include "Tray.h"
+class Tray;
 template<class T> class myvector{
 private:
     vector<T*> v; // vektort tároló osztály
@@ -17,11 +19,12 @@ public:
     void allsetDirectionRandom();
     void allrandomizeVelocity();
     void allsetXY(double,double );
-    void allCompute(Tray&,Tray&);
+    void allCompute(Tray&, Tray&);
+    bool isOut();
     ~myvector();
     void Draw();
 };
-#endif // MYVECTOR_H
+
 template<class T> myvector<T>::myvector(){}
 
 template<class T> void myvector<T>::push_back(T* element){
@@ -61,5 +64,13 @@ template<class T>void myvector<T>::allsetXY(double x, double y){
 }
 template<class T>void myvector<T>::allCompute(Tray& t1,Tray& t2){
     for(int i=0; i < v.size(); i++)
-        (v.at(i))->Compute(t1,t2);
+        (v.at(i))->Compute(t1, t2);
 }
+template<class T> bool myvector<T>::isOut(){
+    for(int i=0; i < v.size(); i++){
+        if((v.at(i))->isOut())
+            return true;
+    }
+    return false;
+}
+#endif // MYVECTOR_H
