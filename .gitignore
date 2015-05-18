@@ -32,4 +32,6 @@
 
 #hi score
 *.sav
+*.log
+obj/
 
