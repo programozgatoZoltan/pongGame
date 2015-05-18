@@ -36,4 +36,6 @@
 obj/
 *.layout
 *.depend
+*.cscope_file_list
+*.cbp
 
