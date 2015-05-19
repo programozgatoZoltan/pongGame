@@ -20,6 +20,7 @@ public:
     void allrandomizeVelocity();
     void allsetXY(double,double );
     void allCompute(Tray&, Tray&);
+    double mingetY();
     bool isOut();
     ~myvector();
     void Draw();
@@ -72,5 +73,13 @@ template<class T> bool myvector<T>::isOut(){
             return true;
     }
     return false;
+}
+template<class T> double myvector<T>::mingetY(){
+    double minimal = (v.at(0))->getY();
+    for(int i = 0; i< v.size(); i++){
+        if((v.at(i))->getY() < minimal)
+            minimal = (v.at(i))->getY();
+    }
+    return minimal;
 }
 #endif // MYVECTOR_H

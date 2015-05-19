@@ -30,8 +30,8 @@ void Score::Draw(){
     char s[20];
     char l[20];
     char b[20];
-    char p[20];
-    char m[20];
+    char p[3];
+    char m[3];
     sprintf(s,"score : %d", score);
     sprintf(l,"level : %d", level);
     sprintf(b,"bonus : %d", bonus);
