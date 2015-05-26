@@ -52,7 +52,7 @@ void CallBackFunc(int event, int x, int y, int flags, void* userdata){
         if(state == SETTINGS){
             if(x > 250 && x < 280 &&
                 y > 80 && y < 95){
-                    if(BALL_NUMBERS < 50)
+                    if(BALL_NUMBERS < 500)
                         BALL_NUMBERS++;
                 }
             if(x > 265 && x < 280 &&
@@ -108,6 +108,7 @@ int main()
             pressedKey = waitKey(10); //
 
             if(state == BEGIN_WINDOW) {
+                first = true;
                 if(pressedKey == ESC) exit(0); // kilépési feltétel
                 Displayable::setImage(imread("background.jpg", CV_LOAD_IMAGE_COLOR)); // kezdő képernyő betöltés
                 score.Read(); // eddigi pontszámok betöltése fájlból
@@ -149,6 +150,7 @@ int main()
                     }
                     tray["machine"]->setWidth(300*MACHINE_TRAY_WIDTH/100);
                     tray["player"]->setWidth(300*PLAYER_TRAY_WIDTH/100);
+                    score.resetScore();
                     first = false;
                 }
                 if(pressedKey == ESC) state = BEGIN_WINDOW;
@@ -177,6 +179,7 @@ int main()
                             imshow("Pong Game",  Displayable::getImage()); //
                             waitKey(0);
                             state = BEGIN_WINDOW; // kilépünk a kezdőképernyőre
+                            continue;
                         }
                     }else{ // különben a gép szerzett ellenünk pontot
                         score.MachinePointInc(); // növeljük a gép pontjait
@@ -188,6 +191,7 @@ int main()
                             imshow("Pong Game",  Displayable::getImage()); // megjelenítünk
                             waitKey(0);
                             state = BEGIN_WINDOW; // kilépünk a kezdőképernyőre
+                            continue;
                         }
                     }
                     balls.allsetXY(150,300); // labdák alaphelyzetbe állítása

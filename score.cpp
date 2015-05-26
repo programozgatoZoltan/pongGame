@@ -8,7 +8,8 @@ Score::Score(){
     level = 1;
     score = 0;
     bonus = 0;
-    Ppoint=0, Mpoint = 0;
+    Ppoint = 0;
+    Mpoint = 0;
 }
 void Score::LevelInc(){
     level++;
@@ -22,6 +23,8 @@ void Score::setBonus(int value){
 }
 void Score::resetScore(){
     score = 0;
+    Mpoint = 0;
+    Ppoint = 0;
 }
 void Score::PlayerPointInc(){Ppoint++;}
 void Score::MachinePointInc(){Mpoint++;}
@@ -67,7 +70,7 @@ void Score::Start(){
     Size textSize = getTextSize( "Press a key!", FONT_HERSHEY_COMPLEX_SMALL, 0.9, 1, &baseline);
     // így a képernyõ közepére tudjuk rendezni
     putText(Displayable::image, "Press a key!", cvPoint(150-(textSize.width/2), 400),
-    FONT_HERSHEY_COMPLEX_SMALL, 0.9, cvScalar(2,200,2), 1, CV_8UC3);
+    FONT_HERSHEY_COMPLEX_SMALL, 0.9, cvScalar(2,160,2), 1, CV_8UC3);
 }
 // az elért score-t elmenti file-ba
 // megnyitás után megvizsgálja, hogy nagyobb e a jelenleg elért,
