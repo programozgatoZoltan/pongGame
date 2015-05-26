@@ -3,6 +3,7 @@
 #include <vector>
 #include "ball.h"
 //#include "Tray.h"
+using namespace std;
 class Tray;
 template<class T> class myvector{
 private:
@@ -11,6 +12,7 @@ public:
     // biztosítani kell az interface-eket
     myvector<T>();
     void push_back(T*);
+    void clear();
     T& pop_back();
     T & operator [](unsigned int position);
     size_t size();
@@ -31,11 +33,15 @@ template<class T> myvector<T>::myvector(){}
 template<class T> void myvector<T>::push_back(T* element){
     v.push_back(element);
 }
+template<class T> void myvector<T>::clear(){
+    v.clear();
+}
 template<class T> T& myvector<T>::operator [](unsigned int position){
     return *(v.at(position));
 }
 template<class T> size_t myvector<T>::size(){
     return v.size();
+
 }
 template<class T> myvector<T>::~myvector(){
     for(int i=0; i < v.size(); i++)
@@ -56,6 +62,7 @@ template<class T>void myvector<T>::allsetDirectionRandom(){
         (v.at(i))->setDirectionRandom();
 }
 template<class T>void myvector<T>::allrandomizeVelocity(){
+    printf("allrandomizevelocity()\n");
     for(int i=0; i < v.size(); i++)
         (v.at(i))->randomizeVelocity();
 }

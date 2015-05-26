@@ -64,9 +64,9 @@ void Score::win(){
 void Score::Start(){
     int baseline=0;
     // megnézzük milyen széles a szöveg, amit majd ki fogunk írni
-    Size textSize = getTextSize( "Press key for start!", FONT_HERSHEY_COMPLEX_SMALL, 0.9, 1, &baseline);
+    Size textSize = getTextSize( "Press a key!", FONT_HERSHEY_COMPLEX_SMALL, 0.9, 1, &baseline);
     // így a képernyõ közepére tudjuk rendezni
-    putText(Displayable::image, "Press key for start!", cvPoint(150-(textSize.width/2), 400),
+    putText(Displayable::image, "Press a key!", cvPoint(150-(textSize.width/2), 400),
     FONT_HERSHEY_COMPLEX_SMALL, 0.9, cvScalar(2,200,2), 1, CV_8UC3);
 }
 // az elért score-t elmenti file-ba

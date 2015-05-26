@@ -31,6 +31,11 @@ bool Tray::setX(int x){
 }
 bool Tray::setWidth(int width){
     this->width = width;
+    if(x-width/2 < 0)
+        x = 150;
+    if(x+width/2 > 300)
+        x = 150;
+    printf("width: %d, x: %d",this->width, x);
     return true;
 }
 bool Tray::setHeight(int height){
@@ -38,7 +43,9 @@ bool Tray::setHeight(int height){
     return true;
 }
 void Tray::Draw(){
-    rectangle(Displayable::image, Point(x-width/2, y+height/2), Point( x+width/2, y-height/2), *color,-1,8 );
+    Point beginP = Point(x-width/2, y+height/2);
+    Point endP = Point( x+width/2, y-height/2);
+    rectangle(Displayable::image, beginP, endP, *color,-1,8 );
 }
 using namespace std;
 // a gép ütõjét beállító fv.
